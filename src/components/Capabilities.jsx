@@ -82,7 +82,7 @@ export default function Capabilities() {
           {filteredStudies.map((study, idx) => (
             <div
               key={study.id}
-              className="bg-[#0F172A]/90 backdrop-blur-xl border border-slate-800 hover:border-sky-500/50 rounded-3xl p-8 sm:p-9 transition-all duration-300 shadow-xl hover:shadow-sky-500/5 flex flex-col justify-between group relative overflow-hidden"
+              className="bg-[#0F172A]/90 backdrop-blur-xl border border-slate-800 hover:border-sky-500/50 rounded-3xl p-5 sm:p-7 md:p-8 lg:p-9 transition-all duration-300 shadow-xl hover:shadow-sky-500/5 flex flex-col justify-between group relative overflow-hidden"
             >
               {/* Soft ambient corner aura */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-sky-500/5 rounded-full blur-3xl pointer-events-none -mr-16 -mt-16" aria-hidden="true" />
@@ -113,22 +113,24 @@ export default function Capabilities() {
                   </p>
                 </div>
 
-                {/* Before / After Metrics Row with High-Contrast Numbers */}
-                <div className="grid grid-cols-3 gap-2.5 pt-2">
+                {/* Before / After Metrics Row with Responsive Mobile Layout */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 pt-2">
                   {study.metrics.map((m, mIdx) => (
                     <div
                       key={mIdx}
-                      className="bg-slate-900/90 rounded-2xl p-3.5 border border-slate-800 text-center"
+                      className="bg-slate-900/90 rounded-xl sm:rounded-2xl p-3 sm:p-3.5 border border-slate-800 flex sm:flex-col items-center justify-between sm:justify-center text-left sm:text-center transition-colors hover:border-slate-700"
                     >
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-0.5 truncate">
-                        {m.label}
+                      <div className="space-y-0.5 min-w-0">
+                        <div className="text-[11px] sm:text-[10px] font-bold uppercase tracking-wider text-slate-400 truncate">
+                          {m.label}
+                        </div>
+                        <div className="text-xl sm:text-2xl font-black text-white tracking-tight leading-none">
+                          {m.value}
+                        </div>
                       </div>
-                      <div className="text-xl sm:text-2xl font-black text-white tracking-tight mb-0.5">
-                        {m.value}
-                      </div>
-                      <div className="text-[11px] font-bold text-emerald-400 flex items-center justify-center gap-0.5">
-                        <TrendingUp className="w-3 h-3" />
-                        <span>{m.change}</span>
+                      <div className="text-xs sm:text-[11px] font-bold text-emerald-400 flex items-center justify-end sm:justify-center gap-1 mt-0 sm:mt-1.5 bg-emerald-500/10 sm:bg-transparent px-2.5 sm:px-0 py-1 sm:py-0 rounded-full sm:rounded-none border border-emerald-500/20 sm:border-0 shrink-0">
+                        <TrendingUp className="w-3 h-3 shrink-0" />
+                        <span className="whitespace-nowrap">{m.change}</span>
                       </div>
                     </div>
                   ))}

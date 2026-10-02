@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { COMPANY_INFO, BUDGET_RANGES } from '../data/content';
-import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, RefreshCw, ShieldCheck, Sparkles, Target, Search, Code2, TrendingUp, Share2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, RefreshCw, ShieldCheck, Sparkles, ChevronDown } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -17,32 +17,26 @@ export default function Contact() {
     {
       name: 'Performance Marketing (PPC)',
       short: 'Google & Meta Ads',
-      icon: Target,
     },
     {
       name: 'Technical & Strategic SEO',
       short: 'Rankings & Search Traffic',
-      icon: Search,
     },
     {
       name: 'Web Architecture & Products',
       short: 'Fast Websites & Web Apps',
-      icon: Code2,
     },
     {
       name: 'Conversion Optimization (CRO)',
       short: 'Funnels & A/B Testing',
-      icon: TrendingUp,
     },
     {
       name: 'Brand & Creative Direction',
       short: 'Storytelling & Design',
-      icon: Sparkles,
     },
     {
       name: 'Social Media Optimization',
       short: 'Audience & Community',
-      icon: Share2,
     },
   ];
 
@@ -301,22 +295,6 @@ export default function Contact() {
 
           {/* RIGHT COLUMN: Interactive Form Card in bg-[#0F172A] border-slate-800/80 shadow-2xl rounded-2xl p-8 */}
           <div className="lg:col-span-7 bg-[#0F172A] rounded-2xl p-8 sm:p-10 border border-slate-800/80 shadow-2xl relative">
-            
-            {/* Hidden select for backwards compatibility with service triggers */}
-            <select
-              id="contact-service"
-              name="service"
-              value={formData.service}
-              onChange={handleChange}
-              className="sr-only"
-              aria-hidden="true"
-              tabIndex={-1}
-            >
-              {availableServices.map((s) => (
-                <option key={s.name} value={s.name}>{s.name}</option>
-              ))}
-            </select>
-
             {!isSubmitted ? (
               <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                 
@@ -424,61 +402,37 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Executive Service Selection Cards Grid */}
+                {/* Service of Primary Interest Dropdown */}
                 <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <label className="block text-xs font-bold text-slate-300">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label htmlFor="contact-service" className="block text-xs font-bold text-slate-300">
                       Service of Primary Interest <span className="text-rose-400">*</span>
                     </label>
-                    <span className="text-[11px] text-slate-400 font-medium">Select primary objective</span>
+                    <span className="hidden sm:inline text-[11px] text-slate-400 font-medium">Select primary objective</span>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
-                    {availableServices.map((service) => {
-                      const isSelected = formData.service === service.name;
-                      const IconComponent = service.icon;
-                      return (
-                        <button
+                  <div className="relative">
+                    <select
+                      id="contact-service"
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3.5 pr-10 rounded-xl border text-sm text-white bg-slate-900 border-slate-700 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 appearance-none transition-all cursor-pointer font-medium truncate"
+                    >
+                      {availableServices.map((service) => (
+                        <option
                           key={service.name}
-                          type="button"
-                          onClick={() => selectService(service.name)}
-                          className={`p-3 rounded-xl text-left transition-all duration-150 cursor-pointer border flex flex-col justify-between group relative ${
-                            isSelected
-                              ? 'bg-sky-500/15 border-sky-400 text-white shadow-md shadow-sky-500/10 ring-1 ring-sky-400'
-                              : 'bg-slate-900 border-slate-700/80 text-slate-300 hover:border-slate-600 hover:bg-slate-800/90 hover:text-white'
-                          }`}
+                          value={service.name}
+                          className="bg-[#0F172A] text-white py-2 text-sm"
                         >
-                          <div className="flex items-center justify-between w-full mb-2">
-                            <div
-                              className={`w-7 h-7 rounded-lg flex items-center justify-center transition-colors ${
-                                isSelected
-                                  ? 'bg-sky-500 text-white'
-                                  : 'bg-slate-800 text-slate-400 group-hover:text-sky-400 group-hover:bg-slate-700'
-                              }`}
-                            >
-                              <IconComponent className="w-3.5 h-3.5" />
-                            </div>
+                          {service.name}
+                        </option>
+                      ))}
+                    </select>
 
-                            <div
-                              className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center transition-colors ${
-                                isSelected ? 'border-sky-400 bg-sky-500' : 'border-slate-600 bg-slate-800'
-                              }`}
-                            >
-                              {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
-                            </div>
-                          </div>
-
-                          <div>
-                            <div className="text-xs font-bold text-white leading-tight">
-                              {service.name}
-                            </div>
-                            <div className="text-[10px] text-slate-400 font-medium mt-0.5">
-                              {service.short}
-                            </div>
-                          </div>
-                        </button>
-                      );
-                    })}
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3.5 text-sky-400">
+                      <ChevronDown className="w-4 h-4" />
+                    </div>
                   </div>
                 </div>
 
