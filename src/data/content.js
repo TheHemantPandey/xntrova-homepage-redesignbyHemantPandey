@@ -9,6 +9,29 @@ export const COMPANY_INFO = {
   address: "A107, 2nd Floor, Sector 8, Dwarka New Delhi - 110077",
 };
 
+export const SOCIAL_LINKS = [
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/company/xntrova/home/",
+    key: "linkedin",
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/xntrova.agency/",
+    key: "instagram",
+  },
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/xntrova/",
+    key: "facebook",
+  },
+  {
+    name: "X (Twitter)",
+    href: "https://x.com/xntrova",
+    key: "x",
+  },
+];
+
 export const NAV_LINKS = [
   { name: "Home", href: "#hero" },
   { name: "Services", href: "#services" },

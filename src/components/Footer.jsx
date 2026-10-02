@@ -259,9 +259,9 @@ export default function Footer() {
             </form>
 
             {/* Accessible Social Media Links */}
-            <div className="flex items-center gap-2.5 pt-2">
+            <div className="flex items-center gap-2 pt-2">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/xntrova/home/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow Xntrova on LinkedIn"
@@ -273,7 +273,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/xntrova.agency/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow Xntrova on Instagram"
@@ -287,7 +287,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/xntrova/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow Xntrova on Facebook"
@@ -295,6 +295,18 @@ export default function Footer() {
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
+              </a>
+
+              <a
+                href="https://x.com/xntrova"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Xntrova on X (Twitter)"
+                className="w-9 h-9 rounded-xl bg-slate-800 border border-slate-700 hover:border-sky-400 hover:text-sky-400 text-slate-400 flex items-center justify-center transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 shadow-xs"
+              >
+                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
               </a>
             </div>
