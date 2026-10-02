@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { COMPANY_INFO, BUDGET_RANGES } from '../data/content';
-import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, RefreshCw, ShieldCheck, Sparkles } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, RefreshCw, ShieldCheck, Sparkles, Target, Search, Code2, TrendingUp, Share2 } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -14,12 +14,36 @@ export default function Contact() {
   });
 
   const availableServices = [
-    'Performance Marketing (PPC)',
-    'Technical & Strategic SEO',
-    'Web Architecture & Products',
-    'Conversion Optimization (CRO)',
-    'Brand & Creative Direction',
-    'Social Media Optimization',
+    {
+      name: 'Performance Marketing (PPC)',
+      short: 'Google & Meta Ads',
+      icon: Target,
+    },
+    {
+      name: 'Technical & Strategic SEO',
+      short: 'Rankings & Search Traffic',
+      icon: Search,
+    },
+    {
+      name: 'Web Architecture & Products',
+      short: 'Fast Websites & Web Apps',
+      icon: Code2,
+    },
+    {
+      name: 'Conversion Optimization (CRO)',
+      short: 'Funnels & A/B Testing',
+      icon: TrendingUp,
+    },
+    {
+      name: 'Brand & Creative Direction',
+      short: 'Storytelling & Design',
+      icon: Sparkles,
+    },
+    {
+      name: 'Social Media Optimization',
+      short: 'Audience & Community',
+      icon: Share2,
+    },
   ];
 
   const [errors, setErrors] = useState({});
@@ -289,7 +313,7 @@ export default function Contact() {
               tabIndex={-1}
             >
               {availableServices.map((s) => (
-                <option key={s} value={s}>{s}</option>
+                <option key={s.name} value={s.name}>{s.name}</option>
               ))}
             </select>
 
@@ -400,26 +424,58 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Interactive Service Selection Pills */}
+                {/* Executive Service Selection Cards Grid */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-2">
-                    Service of Primary Interest
-                  </label>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="block text-xs font-bold text-slate-300">
+                      Service of Primary Interest <span className="text-rose-400">*</span>
+                    </label>
+                    <span className="text-[11px] text-slate-400 font-medium">Select primary objective</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
                     {availableServices.map((service) => {
-                      const isSelected = formData.service === service;
+                      const isSelected = formData.service === service.name;
+                      const IconComponent = service.icon;
                       return (
                         <button
-                          key={service}
+                          key={service.name}
                           type="button"
-                          onClick={() => selectService(service)}
-                          className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                          onClick={() => selectService(service.name)}
+                          className={`p-3 rounded-xl text-left transition-all duration-150 cursor-pointer border flex flex-col justify-between group relative ${
                             isSelected
-                              ? 'bg-sky-500 text-white border border-sky-400 shadow-md shadow-sky-500/25 ring-1 ring-sky-400'
-                              : 'bg-slate-800 text-slate-300 border border-slate-700 hover:text-white hover:bg-slate-700/80'
+                              ? 'bg-sky-500/15 border-sky-400 text-white shadow-md shadow-sky-500/10 ring-1 ring-sky-400'
+                              : 'bg-slate-900 border-slate-700/80 text-slate-300 hover:border-slate-600 hover:bg-slate-800/90 hover:text-white'
                           }`}
                         >
-                          {service}
+                          <div className="flex items-center justify-between w-full mb-2">
+                            <div
+                              className={`w-7 h-7 rounded-lg flex items-center justify-center transition-colors ${
+                                isSelected
+                                  ? 'bg-sky-500 text-white'
+                                  : 'bg-slate-800 text-slate-400 group-hover:text-sky-400 group-hover:bg-slate-700'
+                              }`}
+                            >
+                              <IconComponent className="w-3.5 h-3.5" />
+                            </div>
+
+                            <div
+                              className={`w-3.5 h-3.5 rounded-full border flex items-center justify-center transition-colors ${
+                                isSelected ? 'border-sky-400 bg-sky-500' : 'border-slate-600 bg-slate-800'
+                              }`}
+                            >
+                              {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
+                            </div>
+                          </div>
+
+                          <div>
+                            <div className="text-xs font-bold text-white leading-tight">
+                              {service.name}
+                            </div>
+                            <div className="text-[10px] text-slate-400 font-medium mt-0.5">
+                              {service.short}
+                            </div>
+                          </div>
                         </button>
                       );
                     })}
